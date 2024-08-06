@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Form Example</title>
+	<!-- Latest Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+	body {
+		font-family: 'Nunito', sans-serif;
+		background-repeat: no-repeat;
+		height: 100vh;
+		background-position: center;
+		background-size: cover;
+		background-image:
+		url('https://img.freepik.com/premium-photo/there-is-truck-that-is-driving-down-street-with-many-boxes-it-generative-ai_1034997-104410.jpg?w=1060');
+		
+		color: white;
+	}
+
+	.form-control {
+		border-color: white;
+		border-bottom: 2px solid blue;
+	}
+
+	.form-control:focus {
+		color: #212529;
+		background-color: #fff;
+		border-color: white;
+		border-bottom: 2px solid blue;
+		outline: 0;
+		box-shadow: 0 0 0 .25rem rgba(255, 255, 255, 0.25);
+	}
+
+	.form-select {
+		border-color: white;
+		border-bottom: 2px solid blue;
+	}
+
+	.form-select:focus {
+		color: #212529;
+		background-color: #fff;
+		border-color: white;
+		border-bottom: 2px solid blue;
+		outline: 0;
+		box-shadow: 0 0 0 .25rem rgba(255, 255, 255, 0.25);
+	}
+
+	#navbarNav {
+		display: contents !important;
+	}
+
+	.container {
+		background-color: white;
+		padding: 2rem;
+	}
+
+	.underline {
+		position: relative;
+		color: red;
+	}
+
+	.underline::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -5px;
+		width: 100%;
+		height: 3px;
+		background-color: red;
+	}
+	.divLoader {
+            position: fixed;
+            left: initial;
+            top: 0%;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: #3a3737c9;
+            opacity: 1;
+        }
+ .loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: #FFF #FFF transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after,
+.loader::before {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent #ed1115 #ed1115;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+.loader::before {
+  width: 32px;
+  height: 32px;
+  border-color: #FFF #FFF transparent transparent;
+  animation: rotation 1.5s linear infinite;
+}
+    
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+</style>
+</head>
+<body>
+
+    
+<div class="block-page" id="overlay"
+style="display: none; background: rgba(255, 255, 255, 0.93) !important; text-align: center;">
+<div class="divLoader">
+    <div class="" style="margin-top: 20rem;">
+        <span class="loader"></span>
+    </div>
+
+    <p
+        style="font-size: 15px; font-weight: bold; color: white; margin-bottom: 0px;">Processing
+        Please Wait...</p>
+</div>
+</div>
+	<!-- Bootstrap Header -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">My Page</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse d-contents" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Datatable.html">DataTable</a>
+					</li>
+					<!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li> -->
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container mt-5">
+		<form id="dataForm">
+			<h3 class="text-center mt-1 " style="color: #1b2f45; font-weight: bold;">Enrollment <span class="underline">'Transport'</span> Details </h3>
+			<!-- Input Fields -->
+			<div class="row">
+				<div class="col-md-3 mb-3">
+					<label for="input1" class="form-label">Input 1</label>
+					<input type="text" class="form-control" id="input1" placeholder="Input 1">
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="input2" class="form-label">Input 2</label>
+					<input type="text" class="form-control" id="input2" placeholder="Input 2">
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="input3" class="form-label">Input 3</label>
+					<input type="text" class="form-control" id="input3" placeholder="Input 3">
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="input4" class="form-label">Input 4</label>
+					<input type="text" class="form-control" id="input4" placeholder="Input 4">
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="input5" class="form-label">Input 5</label>
+					<input type="text" class="form-control" id="input5" placeholder="Input 5">
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="currentDate" class="form-label">Current Date</label>
+					<input type="date" class="form-control" id="currentDate">
+				</div>
+			</div>
+			<!-- Select Dropdown Fields -->
+			<div class="row">
+				<div class="col-md-3 mb-3">
+					<label for="select1" class="form-label">Select 1</label>
+					<select class="form-select" id="select1">
+						<option selected>Select an option</option>
+						<option value="1">Option 1</option>
+						<option value="2">Option 2</option>
+						<option value="3">Option 3</option>
+					</select>
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="select2" class="form-label">Select 2</label>
+					<select class="form-select" id="select2">
+						<option selected>Select an option</option>
+						<option value="1">Option 1</option>
+						<option value="2">Option 2</option>
+						<option value="3">Option 3</option>
+					</select>
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="select3" class="form-label">Select 3</label>
+					<select class="form-select" id="select3">
+						<option selected>Select an option</option>
+						<option value="1">Option 1</option>
+						<option value="2">Option 2</option>
+						<option value="3">Option 3</option>
+					</select>
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="select4" class="form-label">Select 4</label>
+					<select class="form-select" id="select4">
+						<option selected>Select an option</option>
+						<option value="1">Option 1</option>
+						<option value="2">Option 2</option>
+						<option value="3">Option 3</option>
+					</select>
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="select5" class="form-label">Select 5</label>
+					<select class="form-select" id="select5">
+						<option selected>Select an option</option>
+						<option value="1">Option 1</option>
+						<option value="2">Option 2</option>
+						<option value="3">Option 3</option>
+					</select>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+	<!-- Latest Bootstrap Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<!-- Latest jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- SheetJS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+	<!-- SweetAlert2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+	$(document).ready(function() {
+    
+});
+
+document.getElementById('dataForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const data = {
+                EntreDate: document.getElementById('currentDate').value,
+                input1: document.getElementById('input1').value,
+                input2: document.getElementById('input2').value,
+                input3: document.getElementById('input3').value,
+                input4: document.getElementById('input4').value,
+                input5: document.getElementById('input5').value,
+                select1: document.getElementById('select1').value,
+                select2: document.getElementById('select2').value,
+                select3: document.getElementById('select3').value,
+                select4: document.getElementById('select4').value,
+                select5: document.getElementById('select5').value
+                
+            };
+			showOverlay();
+            //console.log("Inputs: ", currentDate, input1, input2, input3, input4, input5);
+            //console.log("Selects: ", select1, select2, select3, select4, select5);
+            const url = 'https://script.google.com/macros/s/AKfycbw8fr5tQrDIIPgp2Ur1RqvySENF9CVYSoQntVrj07HqLJEw-neHS00BnLgeCGS_M1OW2w/exec';
+
+            fetch(url, {				
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },				
+                body: JSON.stringify(data)				
+            })
+			.then(() => {
+        hideOverlay();
+        Swal.fire({
+            title: 'Success!',
+            text: 'Enrollment completed successfully.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+			allowOutsideClick: false,
+        });
+    })
+                .catch(error => {
+					hideOverlay();
+            Swal.fire({
+                title: 'Error!',
+                text: 'Error: ' + error.message,
+                icon: 'error',
+                confirmButtonText: 'OK',
+				allowOutsideClick: false,
+            });
+                });
+        });
+
+		 //showOverlay and hideOverlay functions written
+         function showOverlay() {
+                $('#overlay').css('display', 'block');
+            }
+
+            function hideOverlay() {
+                $('#overlay').css('display', 'none');
+
+            }
+	</script>
+</body>
+
+</html>
