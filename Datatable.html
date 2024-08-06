@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Data into DataTable</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.0/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- DataTables Responsive CSS -->
+    <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet">
+    <!-- DataTables Buttons CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.0/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Responsive JS -->
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <!-- DataTables Buttons JavaScript -->
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+</head>
+<style>
+    body {
+		font-family: 'Nunito', sans-serif;
+		background-repeat: no-repeat;
+		height: 100vh;
+		background-position: center;
+		background-size: cover;
+		background-image:
+		url('https://img.freepik.com/premium-photo/there-is-truck-that-is-driving-down-street-with-many-boxes-it-generative-ai_1034997-104410.jpg?w=1060');
+		
+		color: white;
+	}
+
+    .card-body {
+        background: none;
+        border: none;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+        padding: 25px;
+        border-left: 3px solid #0d6efd;
+    }
+
+    .container-fluid {
+        text-align: center;
+    }
+
+    .dataTables_filter input {
+        color: #212529;
+        background-color: #fff;
+        border-color: white;
+        border-bottom: 2px solid blue;
+        outline: 0;
+        box-shadow: 0 0 0 .25rem rgba(255, 255, 255, 0.25);
+    }
+
+    .dataTables_filter input:focus {
+        color: #212529;
+        background-color: #fff;
+        border-color: white;
+        border-bottom: 2px solid blue;
+        outline: 0;
+        box-shadow: 0 0 0 .25rem rgba(255, 255, 255, 0.25);
+    }
+
+    table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, table.dataTable tfoot td {
+        text-align: center;
+        background-color: black;
+        color: #00adff;
+    }
+
+    .buttons-excel {
+        background-color: #0d6efd !important;
+        border-color: #0d6efd !important;
+        color: white !important;
+        border-radius: 5px !important;
+    }
+
+    .buttons-excel:hover {
+        background-color: #000000 !important;
+        border-color: #000000 !important;
+        color: white !important;
+        border-radius: 5px !important;
+    }
+
+    .underline {
+        position: relative;
+        color: red;
+    }
+
+	#navbarNav {
+		display: contents !important;
+	}
+
+    .underline::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 100%;
+        height: 3px;
+        background-color: red;
+    }
+
+    .table-responsive {
+        overflow-x: hidden;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+        background-color: #0087ff;
+    }
+    .divLoader {
+            position: fixed;
+            left: initial;
+            top: 0%;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: #3a3737c9;
+            opacity: 1;
+        }
+ .loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: #FFF #FFF transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after,
+.loader::before {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent #ed1115 #ed1115;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+.loader::before {
+  width: 32px;
+  height: 32px;
+  border-color: #FFF #FFF transparent transparent;
+  animation: rotation 1.5s linear infinite;
+}
+    
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+</style>
+<body>
+    
+    
+<div class="block-page" id="overlay"
+style="display: none; background: rgba(255, 255, 255, 0.93) !important; text-align: center;">
+<div class="divLoader">
+    <div class="" style="margin-top: 20rem;">
+        <span class="loader"></span>
+    </div>
+
+    <p
+        style="font-size: 15px; font-weight: bold; color: white; margin-bottom: 0px;">Processing
+        Please Wait...</p>
+</div>
+</div>
+    <!-- Bootstrap Header -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">My Page</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse d-contents" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Entrolment.html">DataTable</a>
+					</li>
+					<!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li> -->
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+    <div class="container-fluid">
+        <h3 class="text-center mt-5" style="color: #1b2f45; font-weight: bold;">
+            All <span class="underline">'Transport'</span> Details
+        </h3>
+        <div class="card mt-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dataTable" class="table table-striped nowrap" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Current Date</th>
+                                <th>Input 1</th>
+                                <th>Input 2</th>
+                                <th>Input 3</th>
+                                <th>Input 4</th>
+                                <th>Input 5</th>
+                                <th>Select 1</th>
+                                <th>Select 2</th>
+                                <th>Select 3</th>
+                                <th>Select 4</th>
+                                <th>Select 5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be appended here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            function getCurrentDate() {
+                const now = new Date();
+                const day = now.getDate().toString().padStart(2, '0');
+                const month = (now.getMonth() + 1).toString().padStart(2, '0');
+                const year = now.getFullYear();
+                return day + '-' + month + '-' + year;
+            }
+
+            function initializeDataTable() {
+                $('#dataTable').DataTable({
+                    dom: "<'row'<'col-sm-3'l><'col-sm-6 toolbar'B><'col-sm-3 mb-4'f>>" +
+                         "<'row'<'col-sm-12'tr>>" +
+                         "<'row mt-3'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        {
+                            extend: 'excel',
+                            text: '<span class="fa fa-file-excel-o"></span> Export &nbsp;',
+                            filename: function() {
+                                return getCurrentDate() + '_Transport Details';
+                            }
+                        }
+                    ],
+                    destroy: true,
+                    scrollX: false,
+                    responsive: true,
+                    fixedHeader: true,
+                    language: { search: "Search", searchPlaceholder: "Common search" },
+                    aaSorting: [[0, "asc"]],
+                    lengthMenu: [[5, 10, 20, 50, 100, -1], [5, 10, 20, 50, 100, "All"]],
+                    columns: [
+                        { title: 'Current Date', defaultContent: '' },
+                        { title: 'Input 1', defaultContent: '' },
+                        { title: 'Input 2', defaultContent: '' },
+                        { title: 'Input 3', defaultContent: '' },
+                        { title: 'Input 4', defaultContent: '' },
+                        { title: 'Input 5', defaultContent: '' },
+                        { title: 'Select 1', defaultContent: '' },
+                        { title: 'Select 2', defaultContent: '' },
+                        { title: 'Select 3', defaultContent: '' },
+                        { title: 'Select 4', defaultContent: '' },
+                        { title: 'Select 5', defaultContent: '' }
+                    ]
+                });
+               // $('div.toolbar1').html('<div class="form-group"><div class="btn-group submitter-group float-left" style="/* height:31px; */"><div class="input-group-prepend"><div class="input-group-text" style="background: #48c8f5;color:white;border-left: none;border-radius: 4px 0px 0px 4px;padding:5.5px;border-color: #48c8f5;">Status</div></div></div><select class="form-control status-dropdown" style="height: to;border-radius: 0px;width: 6rem;border-radius: 0px 4px 4px 0px;border-left: none;margin-top: 13px;" name="partnerDetailsFilter" id="partnerDetailsFilter" autocomplete="off"><option value="ALL">ALL</option><option value="PENDING">PENDING</option><option value="ACTIVE">ACTIVE</option><option value="REJECT">REJECT</option><option value="SUSPEND">SUSPEND</option></select></div>');
+            }
+
+            function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
+function fetchData() {
+    showOverlay();
+    
+    const url = 'https://script.google.com/macros/s/AKfycbw8fr5tQrDIIPgp2Ur1RqvySENF9CVYSoQntVrj07HqLJEw-neHS00BnLgeCGS_M1OW2w/exec?action=read';
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.querySelector('#dataTable tbody');
+            tableBody.innerHTML = '';
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${row.EntreDate ? formatDate(row.EntreDate) : ''}</td>
+                    <td>${row.input1 || ''}</td>
+                    <td>${row.input2 || ''}</td>
+                    <td>${row.input3 || ''}</td>
+                    <td>${row.input4 || ''}</td>
+                    <td>${row.input5 || ''}</td>
+                    <td>${row.select1 || ''}</td>
+                    <td>${row.select2 || ''}</td>
+                    <td>${row.select3 || ''}</td>
+                    <td>${row.select4 || ''}</td>
+                    <td>${row.select5 || ''}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+            hideOverlay();
+            initializeDataTable(); // Initialize DataTable after data is added
+        })
+        .catch(error => {
+            console.log("in side error");
+            hideOverlay();
+            Swal.fire({
+                title: 'Error!',
+                text: 'Error: ' + error.message,
+                icon: 'error',
+                confirmButtonText: 'OK',
+                allowOutsideClick: false,
+            });
+        });
+}
+
+
+            fetchData();
+        });
+
+         //showOverlay and hideOverlay functions written
+         function showOverlay() {
+                $('#overlay').css('display', 'block');
+            }
+
+            function hideOverlay() {
+                $('#overlay').css('display', 'none');
+
+            }
+    </script>
+</body>
+</html>
