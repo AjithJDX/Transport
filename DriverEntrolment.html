@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+    <!-- Latest Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <!-- jQuery Validation CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
+    <link rel="icon" type="image/x-icon" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
+    <meta name="theme-color" content="#ffffff"> <!-- For Chrome and Android -->
+    <style>
+        /* body {
+            font-family: 'Nunito', sans-serif;
+            background-repeat: no-repeat;
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+            background-image: url('https://img.freepik.com/premium-photo/there-is-truck-that-is-driving-down-street-with-many-boxes-it-generative-ai_1034997-104410.jpg?w=1060');
+            font-weight: 600;
+            color: white;
+        } */
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-repeat: no-repeat;
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+            background-image: url('https://img.freepik.com/premium-photo/picture-city-with-car-driving-road_1088754-13022.jpg?w=996');
+            font-weight: 600;
+            color: white;
+        }
+        .form-control {
+            border-color: white;
+            border-bottom: 2px solid blue;
+        }
+        .form-control:focus {
+            color: #212529;
+            background-color: #fff;
+            border-color: white;
+            border-bottom: 2px solid blue;
+            outline: 0;
+            box-shadow: 0 0 0 .25rem rgba(255, 255, 255, 0.25);
+        }
+        .form-select {
+            border-color: white;
+            border-bottom: 2px solid blue;
+        }
+        .form-select:focus {
+            color: #212529;
+            background-color: #fff;
+            border-color: white;
+            border-bottom: 2px solid blue;
+            outline: 0;
+            box-shadow: 0 0 0 .25rem rgba(255, 255, 255, 0.25);
+        }
+        #navbarNav {
+            justify-content: center;
+        }
+        .container-fluid {
+            width: 95%;
+        }
+        .underline {
+            position: relative;
+            color: red;
+        }
+        .underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 3px;
+            background-color: red;
+        }
+        .underlines {
+            position: relative;
+            color: green;
+        }
+        .underlines::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 3px;
+            background-color: green;
+        }
+        .card-body {
+            background: none;
+            border: none;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+            padding: 25px;
+            border-left: 4px solid #0d6efd;
+        }
+        .divLoader {
+            position: fixed;
+            left: initial;
+            top: 0%;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: #3a3737c9;
+            opacity: 1;
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            border: 3px solid;
+            border-color: #FFF #FFF transparent transparent;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        .loader::after,
+        .loader::before {
+            content: '';  
+            box-sizing: border-box;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            border: 3px solid;
+            border-color: transparent transparent #ed1115 #ed1115;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-sizing: border-box;
+            animation: rotationBack 0.5s linear infinite;
+            transform-origin: center center;
+        }
+        .loader::before {
+            width: 32px;
+            height: 32px;
+            border-color: #FFF #FFF transparent transparent;
+            animation: rotation 1.5s linear infinite;
+        }
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        } 
+        @keyframes rotationBack {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+        .nav-link.always-hover {
+            background-color: white;    
+            color: black !important;
+            border-radius: 4px; 
+        }
+        .marquee-container {
+            background-color: #212529;
+            color: white;
+            text-align: center;
+        }
+		.error{
+			color: red;
+		}
+        #cycleImg{
+        width: 40px;
+        height: auto;
+    }
+    #cycleImg1{
+        width: 55px;
+        height: auto;
+    }
+    #footera{
+    color: rgb(249 243 0);
+    text-decoration: none;
+}
+   @media only screen and (max-width: 768px) { 
+        .card-body {
+            margin-bottom: 5rem;
+         }
+      }
+
+    </style>
+</head>
+<body>
+    <div class="block-page" id="overlay" style="display: none; background: rgba(255, 255, 255, 0.93) !important; text-align: center;">
+        <div class="divLoader">
+            <div class="" style="margin-top: 20rem;">
+                <span class="loader"></span>
+            </div>
+            <p style="font-size: 15px; font-weight: bold; color: white; margin-bottom: 0px;">Processing Please Wait...</p>
+        </div>
+    </div>
+    <!-- Bootstrap Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Developer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-contents" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+						<a class="nav-link" href="Entrolment.html">Entrollment</a>
+					</li>
+					<li class="nav-item">
+                        <a class="nav-link" href="Datatable.html">DataTable</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active always-hover" href="#">Driver-Enrol</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="DriverDatatable.html">Driver-DTable</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="marquee-container">
+        <marquee behavior="scroll" direction="right" scrollamount="8">
+            Welcome to our website! We provide the best transport services.
+            <img id="cycleImg"src="https://cdn.dribbble.com/users/24711/screenshots/2713076/bumpy_loader_2x.gif" alt="">
+        </marquee>
+    </div>
+    <h3 class="text-center mt-4" style="color: #1b2f45; font-weight: bold;">Enrollment <span class="underline">'Driver'</span> Details </h3>
+    <div class="container-fluid">
+        <div class="card mt-4">
+            <div class="card-body mb-5">
+                <form id="driverDataForm">
+                    <!-- Input Fields -->
+                    <div class="row">
+                        <div class="col-md-12 mb-2" style="text-align: center;">
+                            <h4 class="text-center mt-4" style="color: #1b2f45; font-weight: bold;">
+                                <span class="underlines">DRIVERS-</span> Details
+                            </h4>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="vehno" class="form-label">Vec Number</label>
+                            <select class="form-select" id="vehno" name="vehno">
+                                <option selected disabled>Select an Number</option>
+                                <option value="TN 15 AX 1234">TN 15 AX 1234</option>
+                                <option value="TN 15 AX 7777">TN 15 AX 7777</option>
+                                <option value="TN 15 PA 0007">TN 15 PA 0007</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="driverName" class="form-label">Driver Name</label>
+                            <select class="form-select" id="driverName" name="driverName">
+                                <option selected disabled>Select an Driver</option>
+                                <option value="Ajith">Ajith</option>
+                                <option value="DriverOne">DriverOne</option>
+                                <option value="DriverTwo">DriverTwo</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="salary" class="form-label">Salary</label>
+                            <input type="text" id="salary" name="salary" class="form-control only-numbers" placeholder="Enter Salary" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="purchaseWeight" class="form-label">Purchase Weight</label>
+                            <input type="text" id="purchaseWeight" name="purchaseWeight" class="form-control only-numbers" placeholder="Enter Purchase Weight" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="salesWeight" class="form-label">Sales Weight</label>
+                            <input type="text" id="salesWeight" name="salesWeight" class="form-control only-numbers" placeholder="Enter Sales Weight" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="advance" class="form-label">Advance</label>
+                            <input type="text" id="advance" name="advance" class="form-control only-numbers" placeholder="Enter Advance" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="vebridge" class="form-label">Vebridge</label>
+                            <input type="text" id="vebridge" name="vebridge" class="form-control only-numbers" placeholder="Enter Vebridge" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="unloadingAmount" class="form-label">Unloading Amount</label>
+                            <input type="text" id="unloadingAmount" name="unloadingAmount" class="form-control only-numbers" placeholder="Enter Unloading Amount" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="food" class="form-label">Food</label>
+                            <input type="text" id="food" name="food" class="form-control only-numbers" placeholder="Enter Food Amount" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="tea" class="form-label">Tea</label>
+                            <input type="text" id="tea" name="tea" class="form-control only-numbers" placeholder="Enter Tea Amount" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="police" class="form-label">Police</label>
+                            <input type="text" id="police" name="police" class="form-control only-numbers" placeholder="Enter Police Amount" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="tollgate" class="form-label">Tollgate</label>
+                            <input type="text" id="tollgate" name="tollgate" class="form-control only-numbers" placeholder="Enter Tollgate Amount" required>
+                        </div>
+                        <div class="col-md-12" style="text-align: end;">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <footer class="fixed-bottom text-center" style="background-color: #000000;">    
+            Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ion-ios-heart" aria-hidden="true"></i> by <a id="footera" href="" target="_blank">AX-Developers </a>          
+        <img id="cycleImg1"src="https://i.pinimg.com/originals/81/17/8b/81178b47a8598f0c81c4799f2cdd4057.gif" alt=""> 
+    </footer>
+    
+    <!-- Latest Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Latest jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery Validation Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    $(document).ready(function() {
+		//Code is Page title Set Start
+		const todaytitle = new Date();
+        const daytitle = todaytitle.getDate();
+        const monthtitle = todaytitle.toLocaleString('default', { month: 'long'});
+        const yeartitle = todaytitle.getFullYear();
+        const formattedDatetitle = `${daytitle} -${monthtitle} -${yeartitle}`;
+        document.title = `${formattedDatetitle} @ Transport Details`;
+        //Code is Page title Set End 
+
+        // Initialize jQuery Validation
+        // Initialize jQuery Validation
+$("#driverDataForm").validate({
+    rules: {
+        vehno: "required",
+        driverName: "required",
+        salary: "required",
+        purchaseWeight: "required",
+        salesWeight: "required",
+        advance: "required",
+        vebridge: "required",
+        unloadingAmount: "required",
+        food: "required",
+        tea: "required",
+        police: "required",
+        tollgate: "required"
+    },
+    messages: {
+        vehno: "Select  Vehicle Number",
+        driverName: "Select  Driver Name",
+        salary: "Please enter Salary",
+        purchaseWeight: "Please enter Purchase Weight",
+        salesWeight: "Please enter Sales Weight",
+        advance: "Please enter Advance",
+        vebridge: "Please enter Vebridge",
+        unloadingAmount: "Please enter Unloading Amount",
+        food: "Please enter Food",
+        tea: "Please enter Tea",
+        police: "Please enter Police",
+        tollgate: "Please enter Tollgate"
+    },
+    submitHandler: function(form) {
+        const data = {
+            vehno: document.getElementById('vehno').value,
+            driverName: document.getElementById('driverName').value,
+            salary: document.getElementById('salary').value,
+            purchaseWeight: document.getElementById('purchaseWeight').value,
+            salesWeight: document.getElementById('salesWeight').value,
+            advance: document.getElementById('advance').value,
+            vebridge: document.getElementById('vebridge').value,
+            unloadingAmount: document.getElementById('unloadingAmount').value,
+            food: document.getElementById('food').value,
+            tea: document.getElementById('tea').value,
+            police: document.getElementById('police').value,
+            tollgate: document.getElementById('tollgate').value
+        };
+        showOverlay();
+        const url = 'https://script.google.com/macros/s/AKfycbzlt9qpsdAJoVyYGQ3Fp2q64lMLy4Vuqt3Dzz-ttv26iAmuVisWj-KliSj8KEOEysubNQ/exec';
+        fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            hideOverlay();
+            Swal.fire({
+                title: 'Success!',
+                text: 'Data submitted successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                allowOutsideClick: false,
+            }).then(() => {
+                // Reset the form fields after successful submission
+                $(form).trigger('reset');
+            });
+        })
+        .catch(error => {
+            hideOverlay();
+            Swal.fire({
+                title: 'Error!',
+                text: 'Error: ' + error.message,
+                icon: 'error',
+                confirmButtonText: 'OK',
+                allowOutsideClick: false,
+            });
+        });
+    }
+});
+
+        // Allow only numbers
+    document.querySelectorAll('.only-numbers').forEach(function (input) {
+        input.addEventListener('input', function () {
+            input.value = input.value.replace(/[^0-9]/g, '');
+        });
+    });
+
+    // Allow only letters
+    document.querySelectorAll('.only-letters').forEach(function (input) {
+        input.addEventListener('input', function () {
+            input.value = input.value.replace(/[^a-zA-Z]/g, '');
+        });
+    });
+
+    // Convert to uppercase and remove special characters
+    document.querySelectorAll('.to-uppercase').forEach(function (input) {
+        input.addEventListener('input', function () {
+            input.value = input.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+        });
+    });
+	
+        function showOverlay() {
+            $('#overlay').css('display', 'block');
+        }
+
+        function hideOverlay() {
+            $('#overlay').css('display', 'none');
+        }
+    });
+    //Give me one html,javascript code on i am enter a text after click audio button to that text will spech give me a that type of code now perectly 
+    </script>
+</body>
+</html>
