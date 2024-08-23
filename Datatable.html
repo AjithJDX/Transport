@@ -15,12 +15,12 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-	<!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
-    <link rel="icon" type="image/x-icon" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
-    <meta name="theme-color" content="#ffffff"> <!-- For Chrome and Android -->
+   <!-- Favicon -->
+   <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
+   <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
+   <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
+   <link rel="icon" type="image/x-icon" href="https://cdn.vectorstock.com/i/1000v/76/89/truck-logo-vector-45757689.jpg">
+   <meta name="theme-color" content="#ffffff"> <!-- For Chrome and Android -->
 
 <!-- Latest Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -327,7 +327,13 @@ style="display: none; background: rgba(255, 255, 255, 0.93) !important; text-ali
 						<a class="nav-link" href="Entrolment.html">Entrollment</a>
 					</li>
 					<li class="nav-item">
-                        <a class="nav-link always-hover" href="#">DataTable</a>
+                        <a class="nav-link active always-hover" href="#">DataTable</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="DriverEntrolment.html">Driver-Enrol</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="DriverDatatable.html">Driver-DTable</a>
                     </li>
                 </ul>
             </div>
@@ -349,17 +355,24 @@ style="display: none; background: rgba(255, 255, 255, 0.93) !important; text-ali
                     <table id="dataTable" class="table table-striped nowrap" style="width: 100%">
                         <thead>
                             <tr>
-                                <th>Current Date</th>
-                                <th>Pickup Location</th>
-                                <th>Dropoff Location</th>
-                                <th>Mill Name</th>
-                                <th>Input 4</th>
-                                <th>Total TUN</th>
-                                <th>Driver Name</th>
-                                <th>Vehicle Number</th>
-                                <th>Select 3</th>
-                                <th>Select 4</th>
-                                <th>Select 5</th>
+                                <th>Veh Number</th>
+                                <th>Purchase Date</th>
+                                <th>Purchase Mill Name</th>
+                                <th>Purchase Weight</th>
+                                <th>Purchase Rate</th>
+                                <th>Loading Labour</th>
+                                <th>Purchase Driver</th>
+                                <th>Sales Date</th>
+                                <th>Sales Mill Name</th>
+                                <th>Sales Weight</th>
+                                <th>Sales Rate</th>
+                                <th>Unloading Labour</th>
+                                <th>Sales Driver</th>
+                                <th>Start KM</th>
+                                <th>End KM</th>
+                                <th>Running KM</th>
+                                <th>Diesel</th>
+                                <th>Mileage</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -453,17 +466,24 @@ style="display: none; background: rgba(255, 255, 255, 0.93) !important; text-ali
                  [5, 10, 20, 50, 100, "All"]
              ],
              columns: [
-                    { title: 'Current Date', data: 'EntreDate', defaultContent: '' },
-                    { title: 'Pickup Location', data: 'pickupLoc', defaultContent: '' },
-                    { title: 'Dropoff Location', data: 'dropoffLoc', defaultContent: '' },
-                    { title: 'Mill Name', data: 'millName', defaultContent: '' },
-                    { title: 'Input 4', data: 'input4', defaultContent: '' },
-                    { title: 'Total TUN', data: 'totalTUN', defaultContent: '' },
-                    { title: 'Driver Name', data: 'driverName', defaultContent: '' },
-                    { title: 'Vehicle Number', data: 'vecNumber', defaultContent: '' },
-                    { title: 'Select 3', data: 'select3', defaultContent: '' },
-                    { title: 'Select 4', data: 'select4', defaultContent: '' },
-                    { title: 'Select 5', data: 'select5', defaultContent: '' }
+                    { title: 'Veh Number', data: 'vecNumber', defaultContent: '' },
+                    { title: 'Purchase Date', data: 'purchaseDate', defaultContent: '' },
+                    { title: 'Purchase Mill Name', data: 'purchaseMillName', defaultContent: '' },
+                    { title: 'Purchase Weight', data: 'purchaseWeight', defaultContent: '' },
+                    { title: 'Purchase Rate', data: 'purchaseRate', defaultContent: '' },
+                    { title: 'Loading Labour', data: 'loadingLabour', defaultContent: '' },
+                    { title: 'Purchase Driver', data: 'purchaseDriver', defaultContent: '' },
+                    { title: 'Sales Date', data: 'salesDate', defaultContent: '' },
+                    { title: 'Sales Mill Name', data: 'salesMillName', defaultContent: '' },
+                    { title: 'Sales Weight', data: 'salesWeight', defaultContent: '' },
+                    { title: 'Sales Rate', data: 'salesRate', defaultContent: '' },
+                    { title: 'Unloading Labour', data: 'unloadingLabour', defaultContent: '' },
+                    { title: 'Sales Driver', data: 'salesDriver', defaultContent: '' },
+                    { title: 'Start KM', data: 'startKM', defaultContent: '' },
+                    { title: 'End KM', data: 'endKM', defaultContent: '' },
+                    { title: 'Running KM', data: 'runningKM', defaultContent: '' },
+                    { title: 'Diesel', data: 'diesel', defaultContent: '' },
+                    { title: 'Mileage', data: 'mileage', defaultContent: '' }
                 ]
          });
          $('div.toolbar3').html('<button class=" btnRefresh btn btn-primary" id="btnRefresh" tabindex="0" aria-controls="btnRefresh" type="button"><span>Refresh <i class="fa-solid fa-rotate-right"></i></span></button>');
@@ -482,7 +502,7 @@ style="display: none; background: rgba(255, 255, 255, 0.93) !important; text-ali
      function fetchData() {
          showOverlay();
 
-         const url = 'https://script.google.com/macros/s/AKfycbymxjmTG21qsdrGrkafVBbqPAFDp7KOBocKFlR6ONn3ylukYCbMLf_mFhh90Afv-qC9ZA/exec?action=read';
+         const url = 'https://script.google.com/macros/s/AKfycbypsUC23pa0lSrJ8gCkmWfV4vnZJ_AfM_A_uM7WWVRy1hdgD7lDccMEN6qYqkOQIb5-HA/exec?action=read';
 
          fetch(url)
              .then(response => response.json())
@@ -493,17 +513,26 @@ style="display: none; background: rgba(255, 255, 255, 0.93) !important; text-ali
                  data.forEach(row => {
                      const tr = document.createElement('tr');
                      tr.innerHTML = `
-                                    <td>${row.EntreDate ? formatDate(row.EntreDate) : ''}</td>
-                                    <td>${row.pickupLoc || ''}</td>
-                                    <td>${row.dropoffLoc || ''}</td>
-                                    <td>${row.millName || ''}</td>
-                                    <td>${row.input4 || ''}</td>
-                                    <td>${row.totalTUN || ''}</td>
-                                    <td>${row.driverName || ''}</td>
-                                    <td>${row.vecNumber || ''}</td>
-                                    <td>${row.select3 || ''}</td>
-                                    <td>${row.select4 || ''}</td>
-                                    <td>${row.select5 || ''}</td>
+                     <td>${row.vecNumber || ''}</td>
+                                     <td>${row.purchaseDate ? formatDate(row.purchaseDate) : ''}</td>
+                            <td>${row.purchaseMillName || ''}</td>
+                            <td>${row.purchaseWeight || ''}</td>
+                            <td>${row.purchaseRate || ''}</td>
+                            <td>${row.loadingLabour || ''}</td>
+                            <td>${row.purchaseDriver || ''}</td>
+                            <td>${row.salesDate ? formatDate(row.salesDate) : ''}</td>
+                            <td>${row.salesMillName || ''}</td>
+                            <td>${row.salesWeight || ''}</td>
+                            <td>${row.salesRate || ''}</td>
+                            <td>${row.unloadingLabour || ''}</td>
+                            <td>${row.salesDriver || ''}</td>
+                            <td>${row.startKM || ''}</td>
+                            <td>${row.endKM || ''}</td>
+                            <td>${row.runningKM || ''}</td>
+                            <td>${row.diesel || ''}</td>
+                            <td>${row.mileage || ''}</td>
+                            
+
                                 `;
                      tableBody.appendChild(tr);
                  });
@@ -540,7 +569,7 @@ style="display: none; background: rgba(255, 255, 255, 0.93) !important; text-ali
 
          // Filter data based on the date range
          const filteredData = allData.filter(row => {
-             const rowDate = normalizeDate(new Date(row.EntreDate));
+             const rowDate = normalizeDate(new Date(row.purchaseDate));
              if (isNaN(rowDate.getTime())) return false; // Skip invalid dates
 
              // If no dates are set, return all rows
@@ -569,17 +598,25 @@ style="display: none; background: rgba(255, 255, 255, 0.93) !important; text-ali
          filteredData.forEach(row => {
              const tr = document.createElement('tr');
              tr.innerHTML = `
-            <td>${row.EntreDate ? formatDate(row.EntreDate) : ''}</td>
-                                    <td>${row.pickupLoc || ''}</td>
-                                    <td>${row.dropoffLoc || ''}</td>
-                                    <td>${row.millName || ''}</td>
-                                    <td>${row.input4 || ''}</td>
-                                    <td>${row.totalTUN || ''}</td>
-                                    <td>${row.driverName || ''}</td>
-                                    <td>${row.vecNumber || ''}</td>
-                                    <td>${row.select3 || ''}</td>
-                                    <td>${row.select4 || ''}</td>
-                                    <td>${row.select5 || ''}</td>
+            <td>${row.purchaseDate ? formatDate(row.purchaseDate) : ''}</td>
+                            <td>${row.purchaseMillName || ''}</td>
+                            <td>${row.purchaseWeight || ''}</td>
+                            <td>${row.purchaseRate || ''}</td>
+                            <td>${row.loadingLabour || ''}</td>
+                            <td>${row.purchaseDriver || ''}</td>
+                            <td>${row.salesDate || ''}</td>
+                            <td>${row.salesMillName || ''}</td>
+                            <td>${row.salesWeight || ''}</td>
+                            <td>${row.salesRate || ''}</td>
+                            <td>${row.unloadingLabour || ''}</td>
+                            <td>${row.salesDriver || ''}</td>
+                            <td>${row.startKM || ''}</td>
+                            <td>${row.endKM || ''}</td>
+                            <td>${row.runningKM || ''}</td>
+                            <td>${row.diesel || ''}</td>
+                            <td>${row.mileage || ''}</td>
+                            <td>${row.vecNumber || ''}</td>
+
         `;
              tableBody.appendChild(tr);
          });
